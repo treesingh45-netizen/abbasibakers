@@ -7,12 +7,15 @@ import {
   HeartHandshake,
   MapPin,
   Phone,
-  Instagram,
-  Facebook,
   ExternalLink,
   MapPinned,
 } from 'lucide-react';
-import { AbbasiLogo, WheatDivider } from '../components/AbbasiLogo';
+import {
+  AbbasiLogo,
+  WheatDivider,
+  InstagramIcon as Instagram,
+  FacebookIcon as Facebook,
+} from '../components/AbbasiLogo';
 import { BakeryImage, ProductCard } from '../components/SharedModals';
 import {
   BakeryProduct,

@@ -3,14 +3,16 @@ import {
   ShoppingBag,
   Menu,
   X,
-  Instagram,
-  Facebook,
   Phone,
   MessageCircle,
   MapPin,
   Settings,
 } from 'lucide-react';
-import { AbbasiLogo } from './components/AbbasiLogo';
+import {
+  AbbasiLogo,
+  InstagramIcon as Instagram,
+  FacebookIcon as Facebook,
+} from './components/AbbasiLogo';
 import {
   CartDrawer,
   CartItem,

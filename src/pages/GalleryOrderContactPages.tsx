@@ -1,7 +1,5 @@
 import React, { useState, useRef } from 'react';
 import {
-  Instagram,
-  Facebook,
   X,
   ZoomIn,
   Truck,
@@ -17,7 +15,12 @@ import {
   ExternalLink,
   ShoppingBag,
 } from 'lucide-react';
-import { AbbasiLogo, WheatDivider } from '../components/AbbasiLogo';
+import {
+  AbbasiLogo,
+  WheatDivider,
+  InstagramIcon as Instagram,
+  FacebookIcon as Facebook,
+} from '../components/AbbasiLogo';
 import { BakeryImage, CartItem } from '../components/SharedModals';
 import {
   BakeryProduct,
