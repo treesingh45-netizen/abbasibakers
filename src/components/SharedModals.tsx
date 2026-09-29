@@ -32,14 +32,25 @@ export interface CartItem {
   quantity: number;
 }
 
+function resolveBundledImageSrc(src: string): string {
+  if (!src) return IMAGES.heroCelebrationCake;
+  if (src.includes('hero_celebration_cake')) return IMAGES.heroCelebrationCake;
+  if (src.includes('chocolate_fudge_cake')) return IMAGES.chocolateFudgeCake;
+  if (src.includes('red_velvet_cream_cake')) return IMAGES.redVelvetCake;
+  if (src.includes('pakistani_traditional_mithai')) return IMAGES.traditionalMithai;
+  if (src.includes('bakery_patisserie_assortment')) return IMAGES.bakeryAssortment;
+  return src;
+}
+
 export const BakeryImage: React.FC<{
   src: string;
   alt: string;
   className?: string;
 }> = ({ src, alt, className = '' }) => {
   const [hasError, setHasError] = useState(false);
+  const resolvedSrc = resolveBundledImageSrc(src);
 
-  if (hasError || !src) {
+  if (hasError || !resolvedSrc) {
     return (
       <div
         className={`flex flex-col items-center justify-center bg-gradient-to-br from-[#F5EDE1] to-[#FDFAF5] text-[#52321B] p-6 text-center ${className}`}
@@ -56,7 +67,7 @@ export const BakeryImage: React.FC<{
 
   return (
     <img
-      src={src}
+      src={resolvedSrc}
       alt={alt}
       referrerPolicy="no-referrer"
       onError={() => setHasError(true)}

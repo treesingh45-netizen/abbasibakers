@@ -1,9 +1,3 @@
-import heroCelebrationCakeImg from '../assets/images/hero_celebration_cake_1790664164180.jpg';
-import chocolateFudgeCakeImg from '../assets/images/chocolate_fudge_cake_1790664184883.jpg';
-import redVelvetCakeImg from '../assets/images/red_velvet_cream_cake_1790664198893.jpg';
-import traditionalMithaiImg from '../assets/images/pakistani_traditional_mithai_1790664215499.jpg';
-import bakeryAssortmentImg from '../assets/images/bakery_patisserie_assortment_1790664231339.jpg';
-
 export type MenuCategory =
   | 'All'
   | 'Cakes'
@@ -71,11 +65,20 @@ export interface StoreSettings {
 }
 
 export const IMAGES = {
-  heroCelebrationCake: heroCelebrationCakeImg,
-  chocolateFudgeCake: chocolateFudgeCakeImg,
-  redVelvetCake: redVelvetCakeImg,
-  traditionalMithai: traditionalMithaiImg,
-  bakeryAssortment: bakeryAssortmentImg,
+  heroCelebrationCake:
+    'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1600&q=85',
+  chocolateFudgeCake:
+    'https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?auto=format&fit=crop&w=1000&q=85',
+  redVelvetCake:
+    'https://images.unsplash.com/photo-1586788680434-30d324b2d46f?auto=format&fit=crop&w=1000&q=85',
+  traditionalMithai:
+    'https://images.unsplash.com/photo-1666190092159-3171cf0fbb12?auto=format&fit=crop&w=1000&q=85',
+  bakeryAssortment:
+    'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1000&q=85',
+  celebrationFeatureCake:
+    'https://images.unsplash.com/photo-1535254973040-607b474cb50d?auto=format&fit=crop&w=1200&q=85',
+  aboutStoryCake:
+    'https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=1200&q=85',
 };
 
 export const INITIAL_STORE_SETTINGS: StoreSettings = {
@@ -107,42 +110,48 @@ export const INITIAL_CATEGORIES: CategoryFeature[] = [
     name: 'Cakes',
     filterKey: 'Cakes',
     description: 'Signature chocolate fudge, red velvet, fresh cream and custom celebration cakes.',
-    image: IMAGES.chocolateFudgeCake,
+    image:
+      'https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=900&q=85',
   },
   {
     id: 'cat-bakery',
     name: 'Bakery',
     filterKey: 'Bakery',
     description: 'Oven-fresh artisan biscuits, butter cookies, tea cakes and daily baked favorites.',
-    image: IMAGES.bakeryAssortment,
+    image:
+      'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=85',
   },
   {
     id: 'cat-sweets',
     name: 'Traditional Sweets',
     filterKey: 'Sweets',
     description: 'Authentic Pakistani mithai including warm Gulab Jamun, Rasmalai, Barfi and Jalebi.',
-    image: IMAGES.traditionalMithai,
+    image:
+      'https://images.unsplash.com/photo-1666190092159-3171cf0fbb12?auto=format&fit=crop&w=900&q=85',
   },
   {
     id: 'cat-cupcakes',
     name: 'Cupcakes',
     filterKey: 'Cupcakes',
     description: 'Hand-piped gourmet cupcakes in Belgian chocolate, red velvet and vanilla bean.',
-    image: IMAGES.bakeryAssortment,
+    image:
+      'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&w=900&q=85',
   },
   {
     id: 'cat-desserts',
     name: 'Desserts',
     filterKey: 'Desserts',
     description: 'Fudgy walnut brownies, chilled cream desserts, and layered pastry delights.',
-    image: IMAGES.redVelvetCake,
+    image:
+      'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=900&q=85',
   },
   {
     id: 'cat-snacks',
     name: 'Snacks',
     filterKey: 'Snacks',
     description: 'Crisp savory patties, teatime baked snacks and flaky puff pastries for guests.',
-    image: IMAGES.bakeryAssortment,
+    image:
+      'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=900&q=85',
   },
 ];
 
@@ -161,7 +170,8 @@ export const INITIAL_PRODUCTS: BakeryProduct[] = [
       { label: '2 Pounds', price: 3500 },
       { label: '3 Pounds', price: 5100 },
     ],
-    image: IMAGES.chocolateFudgeCake,
+    image:
+      'https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?auto=format&fit=crop&w=900&q=85',
     isBestSeller: true,
   },
   {
@@ -178,7 +188,8 @@ export const INITIAL_PRODUCTS: BakeryProduct[] = [
       { label: '2 Pounds', price: 3700 },
       { label: '3 Pounds', price: 5400 },
     ],
-    image: IMAGES.redVelvetCake,
+    image:
+      'https://images.unsplash.com/photo-1586788680434-30d324b2d46f?auto=format&fit=crop&w=900&q=85',
     isBestSeller: true,
   },
   {
@@ -195,7 +206,8 @@ export const INITIAL_PRODUCTS: BakeryProduct[] = [
       { label: '2 Pounds', price: 3300 },
       { label: '3 Pounds', price: 4850 },
     ],
-    image: IMAGES.heroCelebrationCake,
+    image:
+      'https://images.unsplash.com/photo-1606890658317-7d14490b76fd?auto=format&fit=crop&w=900&q=85',
     isBestSeller: true,
   },
   {
@@ -212,7 +224,8 @@ export const INITIAL_PRODUCTS: BakeryProduct[] = [
       { label: '2 Pounds', price: 3000 },
       { label: '3 Pounds', price: 4400 },
     ],
-    image: IMAGES.redVelvetCake,
+    image:
+      'https://images.unsplash.com/photo-1535141192574-5d4897c12636?auto=format&fit=crop&w=900&q=85',
     isBestSeller: true,
   },
   {
@@ -228,7 +241,8 @@ export const INITIAL_PRODUCTS: BakeryProduct[] = [
       { label: '1 Pound', price: 1650 },
       { label: '2 Pounds', price: 3100 },
     ],
-    image: IMAGES.heroCelebrationCake,
+    image:
+      'https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?auto=format&fit=crop&w=900&q=85',
     isBestSeller: false,
   },
   {
@@ -245,7 +259,8 @@ export const INITIAL_PRODUCTS: BakeryProduct[] = [
       { label: '1 Kg Gift Box', price: 1250 },
       { label: '2 Kg Celebration Box', price: 2400 },
     ],
-    image: IMAGES.traditionalMithai,
+    image:
+      'https://images.unsplash.com/photo-1666190092159-3171cf0fbb12?auto=format&fit=crop&w=900&q=85',
     isBestSeller: true,
     isTraditionalSweet: true,
   },
@@ -262,7 +277,8 @@ export const INITIAL_PRODUCTS: BakeryProduct[] = [
       { label: 'Half Kg Portion', price: 720 },
       { label: '1 Kg Family Bowl', price: 1400 },
     ],
-    image: IMAGES.traditionalMithai,
+    image:
+      'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=900&q=85',
     isBestSeller: true,
     isTraditionalSweet: true,
   },
@@ -280,7 +296,8 @@ export const INITIAL_PRODUCTS: BakeryProduct[] = [
       { label: '1 Kg Gift Box', price: 1350 },
       { label: '2 Kg Assorted Mithai Box', price: 2650 },
     ],
-    image: IMAGES.traditionalMithai,
+    image:
+      'https://images.unsplash.com/photo-1589119908995-c6837fa14848?auto=format&fit=crop&w=900&q=85',
     isBestSeller: false,
     isTraditionalSweet: true,
   },
@@ -297,7 +314,8 @@ export const INITIAL_PRODUCTS: BakeryProduct[] = [
       { label: 'Half Kg Pack', price: 480 },
       { label: '1 Kg Pack', price: 950 },
     ],
-    image: IMAGES.traditionalMithai,
+    image:
+      'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85',
     isBestSeller: false,
     isTraditionalSweet: true,
   },
@@ -314,7 +332,8 @@ export const INITIAL_PRODUCTS: BakeryProduct[] = [
       { label: 'Box of 6', price: 1200 },
       { label: 'Box of 12', price: 2250 },
     ],
-    image: IMAGES.bakeryAssortment,
+    image:
+      'https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=900&q=85',
     isBestSeller: false,
   },
   {
@@ -330,7 +349,8 @@ export const INITIAL_PRODUCTS: BakeryProduct[] = [
       { label: 'Box of 6', price: 1100 },
       { label: 'Box of 12', price: 2100 },
     ],
-    image: IMAGES.chocolateFudgeCake,
+    image:
+      'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=900&q=85',
     isBestSeller: false,
   },
   {
@@ -346,7 +366,8 @@ export const INITIAL_PRODUCTS: BakeryProduct[] = [
       { label: 'Half Kg Box', price: 900 },
       { label: '1 Kg Assorted Tin', price: 1750 },
     ],
-    image: IMAGES.bakeryAssortment,
+    image:
+      'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=900&q=85',
     isBestSeller: false,
   },
   {
@@ -362,7 +383,8 @@ export const INITIAL_PRODUCTS: BakeryProduct[] = [
       { label: 'Box of 6', price: 850 },
       { label: 'Box of 12', price: 1600 },
     ],
-    image: IMAGES.bakeryAssortment,
+    image:
+      'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=900&q=85',
     isBestSeller: false,
   },
 ];
@@ -374,7 +396,8 @@ export const CAKE_COLLECTIONS: CakeCollectionItem[] = [
     description:
       'Hand-finished celebration cakes in rich chocolate fudge, red velvet, and fresh cream with personalized name piping.',
     servingNote: 'Available in 1 lb, 2 lb, 3 lb & custom tiers',
-    image: IMAGES.heroCelebrationCake,
+    image:
+      'https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?auto=format&fit=crop&w=900&q=85',
   },
   {
     id: 'cake-wedding',
@@ -382,7 +405,8 @@ export const CAKE_COLLECTIONS: CakeCollectionItem[] = [
     description:
       'Multi-tiered statement cakes adorned with champagne gold accents, floral piping, and refined flavors for Barat & Walima.',
     servingNote: 'Bespoke multi-tier consultations available',
-    image: IMAGES.heroCelebrationCake,
+    image:
+      'https://images.unsplash.com/photo-1535254973040-607b474cb50d?auto=format&fit=crop&w=900&q=85',
   },
   {
     id: 'cake-anniversary',
@@ -390,7 +414,8 @@ export const CAKE_COLLECTIONS: CakeCollectionItem[] = [
     description:
       'Romantic red velvet, Belgian truffle, and ivory rosette cakes crafted to honor milestones with grace.',
     servingNote: 'Custom message plaques included',
-    image: IMAGES.redVelvetCake,
+    image:
+      'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=900&q=85',
   },
   {
     id: 'cake-chocolate',
@@ -398,7 +423,8 @@ export const CAKE_COLLECTIONS: CakeCollectionItem[] = [
     description:
       'Decadent layers of dark chocolate sponge, fudge ganache, Ferrero-style hazelnut crunch, and Belgian chocolate curls.',
     servingNote: 'Our signature best-selling collection',
-    image: IMAGES.chocolateFudgeCake,
+    image:
+      'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=85',
   },
   {
     id: 'cake-fresh-cream',
@@ -406,7 +432,8 @@ export const CAKE_COLLECTIONS: CakeCollectionItem[] = [
     description:
       'Light, airy sponges enveloped in delicately sweetened dairy cream with fruit compotes and classic bakery piping.',
     servingNote: 'Prepared fresh daily in Barakahu',
-    image: IMAGES.redVelvetCake,
+    image:
+      'https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=900&q=85',
   },
   {
     id: 'cake-theme',
@@ -414,7 +441,8 @@ export const CAKE_COLLECTIONS: CakeCollectionItem[] = [
     description:
       'Tailored designs for graduations, bridal showers, engagements, and corporate celebrations across Islamabad.',
     servingNote: 'Made to match your color palette',
-    image: IMAGES.heroCelebrationCake,
+    image:
+      'https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&w=900&q=85',
   },
   {
     id: 'cake-kids',
@@ -422,7 +450,8 @@ export const CAKE_COLLECTIONS: CakeCollectionItem[] = [
     description:
       'Joyful, colorful, and deliciously soft celebration cakes designed around your child’s favorite themes and characters.',
     servingNote: 'Eggless & custom flavor options upon request',
-    image: IMAGES.bakeryAssortment,
+    image:
+      'https://images.unsplash.com/photo-1557925923-cd4648e211a0?auto=format&fit=crop&w=900&q=85',
   },
   {
     id: 'cake-custom',
@@ -430,7 +459,8 @@ export const CAKE_COLLECTIONS: CakeCollectionItem[] = [
     description:
       'Share your reference photo, flavor preference, and guest count — our cake decorators bring your vision to life.',
     servingNote: 'Upload your reference design below',
-    image: IMAGES.chocolateFudgeCake,
+    image:
+      'https://images.unsplash.com/photo-1542826438-bd32f43d626f?auto=format&fit=crop&w=900&q=85',
   },
 ];
 
@@ -440,7 +470,8 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Royal Gold & Dark Ganache Tiered Cake',
     category: 'Celebrations',
     caption: 'Hand-piped dark chocolate ganache rosettes with warm champagne gold accents.',
-    image: IMAGES.heroCelebrationCake,
+    image:
+      'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1000&q=85',
     aspect: 'wide',
     relatedProductId: 'prod-chocolate-fudge-cake',
   },
@@ -449,7 +480,8 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Signature Belgian Chocolate Fudge Cake',
     category: 'Cakes',
     caption: 'Glossy fudge glaze and dark chocolate curls prepared fresh at Sarwar Rd, Barakahu.',
-    image: IMAGES.chocolateFudgeCake,
+    image:
+      'https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?auto=format&fit=crop&w=1000&q=85',
     aspect: 'tall',
     relatedProductId: 'prod-chocolate-fudge-cake',
   },
@@ -458,7 +490,8 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Artisanal Pakistani Mithai Platter',
     category: 'Sweets',
     caption: 'Warm Gulab Jamun, pistachio Barfi, and saffron Rasmalai for family festivities.',
-    image: IMAGES.traditionalMithai,
+    image:
+      'https://images.unsplash.com/photo-1666190092159-3171cf0fbb12?auto=format&fit=crop&w=1000&q=85',
     aspect: 'square',
     relatedProductId: 'prod-gulab-jamun',
   },
@@ -467,7 +500,8 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Crimson Red Velvet Celebration Cake',
     category: 'Cakes',
     caption: 'Layered crimson cocoa sponge with silky cream frosting and white chocolate curls.',
-    image: IMAGES.redVelvetCake,
+    image:
+      'https://images.unsplash.com/photo-1586788680434-30d324b2d46f?auto=format&fit=crop&w=1000&q=85',
     aspect: 'tall',
     relatedProductId: 'prod-red-velvet-cake',
   },
@@ -476,7 +510,8 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Daily Patisserie & Cupcake Counter',
     category: 'Bakery',
     caption: 'Gourmet frosted cupcakes, butter biscuits, and flaky morning pastries.',
-    image: IMAGES.bakeryAssortment,
+    image:
+      'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&w=1000&q=85',
     aspect: 'wide',
     relatedProductId: 'prod-cupcakes',
   },
@@ -485,7 +520,8 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Bespoke Anniversary & Engagement Cake',
     category: 'Custom Cakes',
     caption: 'Custom-designed tiered cake tailored for intimate family celebrations in Islamabad.',
-    image: IMAGES.heroCelebrationCake,
+    image:
+      'https://images.unsplash.com/photo-1535254973040-607b474cb50d?auto=format&fit=crop&w=1000&q=85',
     aspect: 'square',
     relatedProductId: 'prod-fresh-cream-cake',
   },

@@ -33,7 +33,9 @@ export type PageRoute =
   | '/cakes'
   | '/gallery'
   | '/order-online'
-  | '/contact';
+  | '/contact'
+  | '/terms'
+  | '/privacy';
 
 interface HomePageProps {
   products: BakeryProduct[];
@@ -68,12 +70,12 @@ export const HomePage: React.FC<HomePageProps> = ({
   return (
     <div className="animate-fade-in">
       {/* Subtle Interactive Order Mode Bar */}
-      <div className="bg-[#F5EDE1] border-b border-[#CFA878]/30 py-2.5 px-4 sm:px-8">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2 text-xs text-[#52321B]">
-          <div className="flex items-center gap-2">
+      <div className="bg-[#F5EDE1] border-b border-[#CFA878]/30 py-2 px-4 sm:px-8">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 text-[11px] sm:text-xs text-[#52321B]">
+          <div className="flex items-center gap-1.5 min-w-0 truncate">
             <MapPinned className="w-3.5 h-3.5 text-[#CFA878] shrink-0" />
-            <span>
-              Ordering Preference: <strong className="font-semibold">{orderType}</strong>
+            <span className="truncate">
+              <strong className="font-semibold">{orderType}</strong>
               <span className="mx-1.5 text-[#CFA878]">·</span>
               <span>{selectedLocation}</span>
             </span>
@@ -81,83 +83,75 @@ export const HomePage: React.FC<HomePageProps> = ({
           <button
             type="button"
             onClick={onOpenLocationPopup}
-            className="font-semibold uppercase tracking-[0.14em] text-[#52321B] underline decoration-[#CFA878] underline-offset-4 hover:text-[#CFA878] transition-colors cursor-pointer whitespace-nowrap"
+            className="font-semibold uppercase tracking-[0.12em] text-[#52321B] underline decoration-[#CFA878] underline-offset-4 hover:text-[#CFA878] transition-colors cursor-pointer whitespace-nowrap shrink-0"
           >
-            Change Order Option / Location
+            Change
           </button>
         </div>
       </div>
 
-      {/* HERO SECTION */}
-      <section className="relative bg-[#FDFAF5] py-12 sm:py-20 lg:py-24 px-4 sm:px-8 border-b border-[#CFA878]/30">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-          {/* Left Editorial Column */}
-          <div className="lg:col-span-6 space-y-6">
-            <div className="inline-flex items-center gap-3">
-              <AbbasiLogo variant="badge" size="sm" />
-              <span className="h-[1px] w-8 bg-[#CFA878]" aria-hidden="true" />
-              <span className="text-xs font-semibold tracking-[0.26em] uppercase text-[#CFA878]">
-                ABBASI BAKERS &amp; SWEETS
-              </span>
-            </div>
+      {/* HERO SECTION — Centered Editorial Typography over Realistic Cake Background */}
+      <section className="relative min-h-[540px] sm:min-h-[620px] flex items-center justify-center overflow-hidden border-b border-[#CFA878]/40 bg-[#2E1A0C]">
+        {/* Background Realistic Cake Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src={IMAGES.heroCelebrationCake}
+            alt="Signature celebration cake by Abbasi Bakers & Sweets in Barakahu Islamabad"
+            className="w-full h-full object-cover object-center scale-[1.02]"
+          />
+          <div
+            className="absolute inset-0 bg-gradient-to-b from-[#2A160B]/75 via-[#3A2010]/65 to-[#2A160B]/85"
+            aria-hidden="true"
+          />
+        </div>
 
-            <h1 className="font-serif-display text-4xl sm:text-5xl lg:text-6xl font-bold text-[#52321B] leading-[1.08]">
-              Freshly Baked.
-              <br />
-              Made for Every Celebration.
-            </h1>
-
-            <div className="h-[1px] w-24 bg-[#CFA878]" aria-hidden="true" />
-
-            <p className="text-base sm:text-lg text-[#52321B]/80 leading-relaxed max-w-xl">
-              From beautiful cakes and traditional sweets to freshly prepared bakery favorites, Abbasi Bakers &amp; Sweets brings something special to every occasion in Islamabad.
-            </p>
-
-            <div className="pt-2 flex flex-wrap items-center gap-4">
-              <button
-                type="button"
-                onClick={() => onNavigate('/order-online')}
-                className="py-3.5 px-7 bg-[#52321B] text-white text-xs font-semibold tracking-[0.2em] uppercase border border-[#52321B] hover:bg-[#CFA878] hover:border-[#CFA878] hover:text-[#52321B] transition-colors cursor-pointer whitespace-nowrap"
-              >
-                ORDER NOW
-              </button>
-
-              <button
-                type="button"
-                onClick={() => onNavigate('/menu')}
-                className="py-3.5 px-7 bg-transparent text-[#52321B] text-xs font-semibold tracking-[0.2em] uppercase border border-[#52321B] hover:bg-[#F5EDE1] transition-colors cursor-pointer whitespace-nowrap"
-              >
-                EXPLORE MENU
-              </button>
-            </div>
-
-            {/* Quiet Unboxed Metadata */}
-            <div className="pt-4 flex flex-wrap items-center gap-3 text-xs text-[#52321B]/70">
-              <span>Sarwar Rd, Barakahu, Islamabad</span>
-              <span aria-hidden="true" className="text-[#CFA878]">·</span>
-              <span>Freshly Prepared Daily</span>
-              <span aria-hidden="true" className="text-[#CFA878]">·</span>
-              <span>Delivery &amp; Takeaway</span>
-            </div>
+        {/* Centered Editorial Content */}
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-8 py-16 sm:py-24 text-center flex flex-col items-center space-y-6">
+          <div className="inline-flex items-center justify-center gap-3">
+            <span className="h-[1px] w-8 bg-[#CFA878] shrink-0" aria-hidden="true" />
+            <span className="text-[11px] sm:text-xs font-semibold tracking-[0.26em] uppercase text-[#CFA878]">
+              ABBASI BAKERS &amp; SWEETS
+            </span>
+            <span className="h-[1px] w-8 bg-[#CFA878] shrink-0" aria-hidden="true" />
           </div>
 
-          {/* Right Hero Photography */}
-          <div className="lg:col-span-6">
-            <div className="relative p-3 sm:p-4 bg-white border border-[#CFA878]/50 shadow-[0_20px_50px_-20px_rgba(82,50,27,0.18)]">
-              <div className="aspect-[16/10] w-full overflow-hidden bg-[#F5EDE1]">
-                <BakeryImage
-                  src={IMAGES.heroCelebrationCake}
-                  alt="Signature celebration cake by Abbasi Bakers & Sweets in Barakahu Islamabad"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="mt-3 flex items-center justify-between text-xs text-[#52321B]/75 px-1">
-                <span className="font-serif-display italic text-sm text-[#52321B]">
-                  Handcrafted Cakes &amp; Traditional Mithai
-                </span>
-                <span className="font-urdu text-sm text-[#CFA878]">عباسی بیکرز اینڈ سویٹس</span>
-              </div>
-            </div>
+          <h1 className="font-serif-display text-4xl sm:text-6xl lg:text-7xl font-bold text-[#FDFAF5] leading-[1.08] drop-shadow-sm">
+            Freshly Baked.
+            <br />
+            Made for Every Celebration.
+          </h1>
+
+          <div className="h-[1px] w-24 bg-[#CFA878] mx-auto" aria-hidden="true" />
+
+          <p className="text-base sm:text-lg text-[#FDFAF5]/90 leading-relaxed max-w-2xl mx-auto">
+            From beautiful cakes and traditional sweets to freshly prepared bakery favorites, Abbasi Bakers &amp; Sweets brings something special to every occasion in Islamabad.
+          </p>
+
+          <div className="pt-2 flex flex-wrap items-center justify-center gap-4">
+            <button
+              type="button"
+              onClick={() => onNavigate('/order-online')}
+              className="py-3.5 px-8 bg-[#CFA878] text-[#2A160B] text-xs font-bold tracking-[0.2em] uppercase border border-[#CFA878] hover:bg-[#FDFAF5] hover:border-[#FDFAF5] hover:text-[#52321B] transition-colors cursor-pointer whitespace-nowrap"
+            >
+              ORDER NOW
+            </button>
+
+            <button
+              type="button"
+              onClick={() => onNavigate('/menu')}
+              className="py-3.5 px-8 bg-[#2A160B]/50 backdrop-blur-[2px] text-[#FDFAF5] text-xs font-semibold tracking-[0.2em] uppercase border border-[#FDFAF5]/70 hover:bg-[#FDFAF5] hover:text-[#52321B] hover:border-[#FDFAF5] transition-colors cursor-pointer whitespace-nowrap"
+            >
+              EXPLORE MENU
+            </button>
+          </div>
+
+          {/* Quiet Unboxed Metadata */}
+          <div className="pt-4 flex flex-wrap items-center justify-center gap-3 text-xs text-[#FDFAF5]/85">
+            <span>Sarwar Rd, Barakahu, Islamabad</span>
+            <span aria-hidden="true" className="text-[#CFA878]">·</span>
+            <span>Freshly Prepared Daily</span>
+            <span aria-hidden="true" className="text-[#CFA878]">·</span>
+            <span>Delivery &amp; Takeaway</span>
           </div>
         </div>
       </section>
@@ -314,7 +308,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div className="p-3 bg-white border border-[#CFA878]/50">
               <div className="aspect-[4/3] overflow-hidden bg-[#FDFAF5]">
                 <BakeryImage
-                  src={IMAGES.redVelvetCake}
+                  src={IMAGES.celebrationFeatureCake}
                   alt="Celebration cakes at Abbasi Bakers & Sweets Islamabad"
                   className="w-full h-full object-cover"
                 />
@@ -593,7 +587,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
             <div className="p-3 bg-white border border-[#CFA878]/50">
               <div className="aspect-[4/3] overflow-hidden bg-[#F5EDE1]">
                 <BakeryImage
-                  src={IMAGES.heroCelebrationCake}
+                  src={IMAGES.aboutStoryCake}
                   alt="Abbasi Bakers & Sweets craftsmanship in Barakahu Islamabad"
                   className="w-full h-full object-cover"
                 />
@@ -720,3 +714,76 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
     </div>
   );
 };
+
+export const TermsPage: React.FC<{ onNavigate: (route: PageRoute) => void }> = ({ onNavigate }) => (
+  <div className="animate-fade-in py-16 sm:py-20 px-4 sm:px-8 bg-[#FDFAF5]">
+    <div className="max-w-3xl mx-auto bg-white border border-[#CFA878]/40 p-6 sm:p-10 space-y-6 text-[#52321B]">
+      <div className="border-b border-[#CFA878]/30 pb-5">
+        <p className="text-xs font-semibold tracking-[0.22em] uppercase text-[#CFA878] mb-2">
+          ABBASI BAKERS &amp; SWEETS
+        </p>
+        <h1 className="font-serif-display text-3xl sm:text-4xl font-bold">
+          Terms and Conditions
+        </h1>
+      </div>
+      <div className="space-y-4 text-sm sm:text-base text-[#52321B]/85 leading-relaxed">
+        <p>
+          Welcome to <strong>Abbasi Bakers &amp; Sweets</strong>, located at Sarwar Rd, Barakahu, Islamabad. By placing an order through our website, phone, or WhatsApp, you agree to the following terms:
+        </p>
+        <p>
+          <strong>1. Fresh Preparation &amp; Custom Cakes:</strong> All cakes, mithai, and bakery items are freshly prepared daily. Custom celebration and wedding cakes require advance notice and confirmation via WhatsApp or phone (`0317 0035007`).
+        </p>
+        <p>
+          <strong>2. Pricing &amp; Availability:</strong> Prices are listed in Pakistani Rupees (PKR) and may vary based on weight (1 lb, 2 lb, 500g, 1 kg) and custom design requirements.
+        </p>
+        <p>
+          <strong>3. Delivery &amp; Takeaway:</strong> Delivery is available across Barakahu and selected areas in Islamabad. Store pickup is available daily at our Sarwar Rd, Barakahu branch.
+        </p>
+      </div>
+      <div className="pt-4">
+        <button
+          type="button"
+          onClick={() => onNavigate('/')}
+          className="py-2.5 px-6 bg-[#52321B] text-white text-xs font-semibold tracking-[0.16em] uppercase hover:bg-[#CFA878] hover:text-[#52321B] transition-colors cursor-pointer"
+        >
+          Back to Home
+        </button>
+      </div>
+    </div>
+  </div>
+);
+
+export const PrivacyPage: React.FC<{ onNavigate: (route: PageRoute) => void }> = ({ onNavigate }) => (
+  <div className="animate-fade-in py-16 sm:py-20 px-4 sm:px-8 bg-[#FDFAF5]">
+    <div className="max-w-3xl mx-auto bg-white border border-[#CFA878]/40 p-6 sm:p-10 space-y-6 text-[#52321B]">
+      <div className="border-b border-[#CFA878]/30 pb-5">
+        <p className="text-xs font-semibold tracking-[0.22em] uppercase text-[#CFA878] mb-2">
+          ABBASI BAKERS &amp; SWEETS
+        </p>
+        <h1 className="font-serif-display text-3xl sm:text-4xl font-bold">
+          Privacy Policy
+        </h1>
+      </div>
+      <div className="space-y-4 text-sm sm:text-base text-[#52321B]/85 leading-relaxed">
+        <p>
+          <strong>Abbasi Bakers &amp; Sweets</strong> respects your privacy and is committed to protecting the personal details you share when ordering with us.
+        </p>
+        <p>
+          <strong>1. Information We Collect:</strong> When you place an order or custom cake inquiry, we collect your name, phone number, delivery address in Islamabad, and order preferences solely to fulfill your order.
+        </p>
+        <p>
+          <strong>2. How We Use Your Information:</strong> Your contact and delivery details are used exclusively to confirm your bakery order via WhatsApp or phone (`0317 0035007`) and coordinate delivery or takeaway. We never sell or share your personal data with third parties.
+        </p>
+      </div>
+      <div className="pt-4">
+        <button
+          type="button"
+          onClick={() => onNavigate('/')}
+          className="py-2.5 px-6 bg-[#52321B] text-white text-xs font-semibold tracking-[0.16em] uppercase hover:bg-[#CFA878] hover:text-[#52321B] transition-colors cursor-pointer"
+        >
+          Back to Home
+        </button>
+      </div>
+    </div>
+  </div>
+);

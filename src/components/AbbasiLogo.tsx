@@ -157,34 +157,9 @@ export const AbbasiLogo: React.FC<AbbasiLogoProps> = ({
     </svg>
   );
 
-  if (variant === 'badge') {
-    return (
-      <div className={`inline-flex items-center justify-center ${className}`}>
-        <BadgeSvg svgClass={badgeSizes[size]} />
-      </div>
-    );
-  }
-
-  if (variant === 'compact') {
-    return (
-      <div className={`inline-flex items-center gap-2.5 ${className}`}>
-        <BadgeSvg svgClass={`${badgeSizes[size]} shrink-0`} />
-      </div>
-    );
-  }
-
   return (
-    <div className={`inline-flex items-center gap-3 ${className}`}>
+    <div className={`inline-flex items-center justify-center ${className}`}>
       <BadgeSvg svgClass={`${badgeSizes[size]} shrink-0`} />
-      <div className="flex flex-col leading-none">
-        <span
-          className={`font-serif-display text-lg sm:text-2xl font-bold tracking-[0.12em] uppercase whitespace-nowrap ${
-            theme === 'dark' ? 'text-[#FDFAF5]' : 'text-[#52321B]'
-          }`}
-        >
-          Abbasi Bakers &amp; Sweets
-        </span>
-      </div>
     </div>
   );
 };

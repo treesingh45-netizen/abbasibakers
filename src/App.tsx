@@ -29,7 +29,13 @@ import {
   MenuCategory,
   StoreSettings,
 } from './data/bakeryData';
-import { AboutPage, HomePage, PageRoute } from './pages/HomeAndAboutPages';
+import {
+  AboutPage,
+  HomePage,
+  PageRoute,
+  PrivacyPage,
+  TermsPage,
+} from './pages/HomeAndAboutPages';
 import { MenuPage, OurCakesPage } from './pages/MenuAndCakesPages';
 import {
   ContactPage,
@@ -104,6 +110,8 @@ function resolveInitialRoute(): PageRoute {
     '/gallery',
     '/order-online',
     '/contact',
+    '/terms',
+    '/privacy',
   ];
   return validRoutes.includes(path) ? path : '/';
 }
@@ -116,7 +124,7 @@ export default function App() {
   // CMS & Catalog State
   const [products, setProducts] = useState<BakeryProduct[]>(() => {
     try {
-      const saved = safeGetStorage('abbasi_cms_products_v2');
+      const saved = safeGetStorage('abbasi_cms_products_v3');
       const parsed = saved ? JSON.parse(saved) : null;
       return Array.isArray(parsed) && parsed.length > 0 ? parsed : INITIAL_PRODUCTS;
     } catch {
@@ -126,7 +134,7 @@ export default function App() {
 
   const [categories, setCategories] = useState<CategoryFeature[]>(() => {
     try {
-      const saved = safeGetStorage('abbasi_cms_categories_v2');
+      const saved = safeGetStorage('abbasi_cms_categories_v3');
       const parsed = saved ? JSON.parse(saved) : null;
       return Array.isArray(parsed) && parsed.length > 0 ? parsed : INITIAL_CATEGORIES;
     } catch {
@@ -178,11 +186,11 @@ export default function App() {
 
   // Sync CMS & Cart to localStorage
   useEffect(() => {
-    safeSetStorage('abbasi_cms_products_v2', JSON.stringify(products));
+    safeSetStorage('abbasi_cms_products_v3', JSON.stringify(products));
   }, [products]);
 
   useEffect(() => {
-    safeSetStorage('abbasi_cms_categories_v2', JSON.stringify(categories));
+    safeSetStorage('abbasi_cms_categories_v3', JSON.stringify(categories));
   }, [categories]);
 
   useEffect(() => {
@@ -574,6 +582,10 @@ export default function App() {
         {currentRoute === '/contact' && (
           <ContactPage settings={settings} onNavigate={navigateTo} />
         )}
+
+        {currentRoute === '/terms' && <TermsPage onNavigate={navigateTo} />}
+
+        {currentRoute === '/privacy' && <PrivacyPage onNavigate={navigateTo} />}
       </main>
 
       {/* DEEP-BROWN FOOTER */}
@@ -641,6 +653,32 @@ export default function App() {
                     Islamabad, Pakistan
                   </span>
                 </p>
+                <div className="pt-2 space-y-1.5 border-t border-[#CFA878]/20">
+                  <div>
+                    <a
+                      href="/terms"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        navigateTo('/terms');
+                      }}
+                      className="text-[#FDFAF5]/80 hover:text-[#CFA878] transition-colors"
+                    >
+                      Terms and conditions
+                    </a>
+                  </div>
+                  <div>
+                    <a
+                      href="/privacy"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        navigateTo('/privacy');
+                      }}
+                      className="text-[#FDFAF5]/80 hover:text-[#CFA878] transition-colors"
+                    >
+                      Privacy Policy
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
 
