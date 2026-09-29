@@ -45,7 +45,54 @@ const NAV_LINKS: { label: string; route: PageRoute }[] = [
   { label: 'Contact', route: '/contact' },
 ];
 
+function safeGetStorage(key: string): string | null {
+  try {
+    return typeof window !== 'undefined' ? window.localStorage.getItem(key) : null;
+  } catch {
+    return null;
+  }
+}
+
+function safeSetStorage(key: string, value: string): void {
+  try {
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem(key, value);
+    }
+  } catch {
+    // ignore storage quota/privacy errors
+  }
+}
+
+function safeRemoveStorage(key: string): void {
+  try {
+    if (typeof window !== 'undefined') {
+      window.localStorage.removeItem(key);
+    }
+  } catch {
+    // ignore
+  }
+}
+
+function safeGetSession(key: string): string | null {
+  try {
+    return typeof window !== 'undefined' ? window.sessionStorage.getItem(key) : null;
+  } catch {
+    return null;
+  }
+}
+
+function safeSetSession(key: string, value: string): void {
+  try {
+    if (typeof window !== 'undefined') {
+      window.sessionStorage.setItem(key, value);
+    }
+  } catch {
+    // ignore
+  }
+}
+
 function resolveInitialRoute(): PageRoute {
+  if (typeof window === 'undefined') return '/';
   const path = window.location.pathname as PageRoute;
   const validRoutes: PageRoute[] = [
     '/',
@@ -67,8 +114,9 @@ export default function App() {
   // CMS & Catalog State
   const [products, setProducts] = useState<BakeryProduct[]>(() => {
     try {
-      const saved = localStorage.getItem('abbasi_cms_products_v1');
-      return saved ? JSON.parse(saved) : INITIAL_PRODUCTS;
+      const saved = safeGetStorage('abbasi_cms_products_v2');
+      const parsed = saved ? JSON.parse(saved) : null;
+      return Array.isArray(parsed) && parsed.length > 0 ? parsed : INITIAL_PRODUCTS;
     } catch {
       return INITIAL_PRODUCTS;
     }
@@ -76,8 +124,9 @@ export default function App() {
 
   const [categories, setCategories] = useState<CategoryFeature[]>(() => {
     try {
-      const saved = localStorage.getItem('abbasi_cms_categories_v1');
-      return saved ? JSON.parse(saved) : INITIAL_CATEGORIES;
+      const saved = safeGetStorage('abbasi_cms_categories_v2');
+      const parsed = saved ? JSON.parse(saved) : null;
+      return Array.isArray(parsed) && parsed.length > 0 ? parsed : INITIAL_CATEGORIES;
     } catch {
       return INITIAL_CATEGORIES;
     }
@@ -85,8 +134,11 @@ export default function App() {
 
   const [settings, setSettings] = useState<StoreSettings>(() => {
     try {
-      const saved = localStorage.getItem('abbasi_cms_settings_v1');
-      return saved ? JSON.parse(saved) : INITIAL_STORE_SETTINGS;
+      const saved = safeGetStorage('abbasi_cms_settings_v2');
+      const parsed = saved ? JSON.parse(saved) : null;
+      return parsed && typeof parsed === 'object'
+        ? { ...INITIAL_STORE_SETTINGS, ...parsed }
+        : INITIAL_STORE_SETTINGS;
     } catch {
       return INITIAL_STORE_SETTINGS;
     }
@@ -98,12 +150,12 @@ export default function App() {
 
   // Order Location & Mode State
   const [orderType, setOrderType] = useState<'DELIVERY' | 'TAKEAWAY'>(() => {
-    const saved = localStorage.getItem('abbasi_order_type_v1');
+    const saved = safeGetStorage('abbasi_order_type_v2');
     return saved === 'TAKEAWAY' ? 'TAKEAWAY' : 'DELIVERY';
   });
 
   const [selectedLocation, setSelectedLocation] = useState<string>(() => {
-    return localStorage.getItem('abbasi_location_v1') || 'Barakahu, Islamabad';
+    return safeGetStorage('abbasi_location_v2') || 'Barakahu, Islamabad';
   });
 
   const [locationPopupOpen, setLocationPopupOpen] = useState(false);
@@ -111,8 +163,9 @@ export default function App() {
   // Cart & QuickView State
   const [cart, setCart] = useState<CartItem[]>(() => {
     try {
-      const saved = localStorage.getItem('abbasi_cart_v1');
-      return saved ? JSON.parse(saved) : [];
+      const saved = safeGetStorage('abbasi_cart_v2');
+      const parsed = saved ? JSON.parse(saved) : null;
+      return Array.isArray(parsed) ? parsed : [];
     } catch {
       return [];
     }
@@ -123,35 +176,19 @@ export default function App() {
 
   // Sync CMS & Cart to localStorage
   useEffect(() => {
-    try {
-      localStorage.setItem('abbasi_cms_products_v1', JSON.stringify(products));
-    } catch {
-      // ignore storage quota errors
-    }
+    safeSetStorage('abbasi_cms_products_v2', JSON.stringify(products));
   }, [products]);
 
   useEffect(() => {
-    try {
-      localStorage.setItem('abbasi_cms_categories_v1', JSON.stringify(categories));
-    } catch {
-      // ignore
-    }
+    safeSetStorage('abbasi_cms_categories_v2', JSON.stringify(categories));
   }, [categories]);
 
   useEffect(() => {
-    try {
-      localStorage.setItem('abbasi_cms_settings_v1', JSON.stringify(settings));
-    } catch {
-      // ignore
-    }
+    safeSetStorage('abbasi_cms_settings_v2', JSON.stringify(settings));
   }, [settings]);
 
   useEffect(() => {
-    try {
-      localStorage.setItem('abbasi_cart_v1', JSON.stringify(cart));
-    } catch {
-      // ignore
-    }
+    safeSetStorage('abbasi_cart_v2', JSON.stringify(cart));
   }, [cart]);
 
   // Browser back/forward navigation support
@@ -165,7 +202,7 @@ export default function App() {
 
   // Deferred first-visit location popup (after 11s dwell + user scroll/intent)
   useEffect(() => {
-    const alreadyConfirmed = sessionStorage.getItem('abbasi_location_confirmed');
+    const alreadyConfirmed = safeGetSession('abbasi_location_confirmed');
     if (alreadyConfirmed) return;
 
     let dwellElapsed = false;
@@ -173,17 +210,17 @@ export default function App() {
 
     const timer = window.setTimeout(() => {
       dwellElapsed = true;
-      if (userInteracted && !sessionStorage.getItem('abbasi_location_confirmed')) {
+      if (userInteracted && !safeGetSession('abbasi_location_confirmed')) {
         setLocationPopupOpen(true);
-        sessionStorage.setItem('abbasi_location_confirmed', 'true');
+        safeSetSession('abbasi_location_confirmed', 'true');
       }
     }, 11000);
 
     const handleScrollOrMove = () => {
       userInteracted = true;
-      if (dwellElapsed && !sessionStorage.getItem('abbasi_location_confirmed')) {
+      if (dwellElapsed && !safeGetSession('abbasi_location_confirmed')) {
         setLocationPopupOpen(true);
-        sessionStorage.setItem('abbasi_location_confirmed', 'true');
+        safeSetSession('abbasi_location_confirmed', 'true');
       }
     };
 
@@ -269,9 +306,9 @@ export default function App() {
   ) => {
     setOrderType(newType);
     setSelectedLocation(newLocation);
-    localStorage.setItem('abbasi_order_type_v1', newType);
-    localStorage.setItem('abbasi_location_v1', newLocation);
-    sessionStorage.setItem('abbasi_location_confirmed', 'true');
+    safeSetStorage('abbasi_order_type_v2', newType);
+    safeSetStorage('abbasi_location_v2', newLocation);
+    safeSetSession('abbasi_location_confirmed', 'true');
     setLocationPopupOpen(false);
   };
 
@@ -294,9 +331,9 @@ export default function App() {
     setProducts(INITIAL_PRODUCTS);
     setCategories(INITIAL_CATEGORIES);
     setSettings(INITIAL_STORE_SETTINGS);
-    localStorage.removeItem('abbasi_cms_products_v1');
-    localStorage.removeItem('abbasi_cms_categories_v1');
-    localStorage.removeItem('abbasi_cms_settings_v1');
+    safeRemoveStorage('abbasi_cms_products_v2');
+    safeRemoveStorage('abbasi_cms_categories_v2');
+    safeRemoveStorage('abbasi_cms_settings_v2');
   };
 
   const totalCartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
@@ -689,7 +726,7 @@ export default function App() {
         orderType={orderType}
         selectedLocation={selectedLocation}
         onClose={() => {
-          sessionStorage.setItem('abbasi_location_confirmed', 'true');
+          safeSetSession('abbasi_location_confirmed', 'true');
           setLocationPopupOpen(false);
         }}
         onSave={handleSaveOrderContext}

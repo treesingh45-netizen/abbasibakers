@@ -254,7 +254,7 @@ export const OrderOnlinePage: React.FC<OrderOnlinePageProps> = ({
   onClearCart,
 }) => {
   const menuSectionRef = useRef<HTMLDivElement>(null);
-  const checkoutSectionRef = useRef<HTMLDivElement>(null);
+  const checkoutSectionRef = useRef<HTMLFormElement>(null);
 
   const [activeCategory, setActiveCategory] = useState<MenuCategory>('All');
   const [quantities, setQuantities] = useState<Record<string, number>>({});

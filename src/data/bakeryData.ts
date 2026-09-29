@@ -1,3 +1,9 @@
+import heroCelebrationCakeImg from '../assets/images/hero_celebration_cake_1790664164180.jpg';
+import chocolateFudgeCakeImg from '../assets/images/chocolate_fudge_cake_1790664184883.jpg';
+import redVelvetCakeImg from '../assets/images/red_velvet_cream_cake_1790664198893.jpg';
+import traditionalMithaiImg from '../assets/images/pakistani_traditional_mithai_1790664215499.jpg';
+import bakeryAssortmentImg from '../assets/images/bakery_patisserie_assortment_1790664231339.jpg';
+
 export type MenuCategory =
   | 'All'
   | 'Cakes'
@@ -65,11 +71,11 @@ export interface StoreSettings {
 }
 
 export const IMAGES = {
-  heroCelebrationCake: '/src/assets/images/hero_celebration_cake_1790664164180.jpg',
-  chocolateFudgeCake: '/src/assets/images/chocolate_fudge_cake_1790664184883.jpg',
-  redVelvetCake: '/src/assets/images/red_velvet_cream_cake_1790664198893.jpg',
-  traditionalMithai: '/src/assets/images/pakistani_traditional_mithai_1790664215499.jpg',
-  bakeryAssortment: '/src/assets/images/bakery_patisserie_assortment_1790664231339.jpg',
+  heroCelebrationCake: heroCelebrationCakeImg,
+  chocolateFudgeCake: chocolateFudgeCakeImg,
+  redVelvetCake: redVelvetCakeImg,
+  traditionalMithai: traditionalMithaiImg,
+  bakeryAssortment: bakeryAssortmentImg,
 };
 
 export const INITIAL_STORE_SETTINGS: StoreSettings = {
