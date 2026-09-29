@@ -1,0 +1,6 @@
+{
+  "name": "Abbasi Bakers & Sweets | Bakery & Cakes in Barakahu Islamabad",
+  "description": "Abbasi Bakers & Sweets in Sarwar Rd, Barakahu, Islamabad offers cakes, traditional sweets, bakery treats and celebration desserts.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
